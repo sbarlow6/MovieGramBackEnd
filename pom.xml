@@ -13,6 +13,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Project2</name>
 	<description>Movie review application</description>
+	
+	
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -71,6 +73,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				 <configuration>    
+                <mainClass>com.revature.Project2Application</mainClass>
+            </configuration>
 			</plugin>
 		</plugins>
 	</build>
