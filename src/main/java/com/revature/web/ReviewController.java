@@ -21,6 +21,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Movies;
+import com.revature.service.MovieService;
 import com.revature.service.ReviewService;
 import com.revature.service.UserService;
 
@@ -38,6 +39,9 @@ public class ReviewController {
 	}
 	@Autowired
 	public UserService userService;
+	
+	@Autowired
+	public MovieService movieService;
 	
 	
 	private RestTemplate restTemplate;
@@ -65,6 +69,21 @@ public class ReviewController {
         return newmovie;
 
     }
+	
+	@RequestMapping(value = "/movieposter", method = RequestMethod.GET)
+    public Movies getPosters(@RequestParam String imdbID){
+			System.out.println(imdbID);
+			Movies movie = this.movieService.findMoviebyimdbID(imdbID);
+			if (movie == null) {
+				System.out.println("Request received for new movie: " + imdbID + ". Retrieving it from the OMDb API.");
+				String OMDbAPImovie = "http://www.omdbapi.com/?apikey=" + omdbApiKey + "&i=" + imdbID;
+				movie =  restTemplate.getForObject(OMDbAPImovie, Movies.class);
+				this.movieService.insertMovie(movie);
+			}
+			return movie;
+    }
+	
+	
 	@RequestMapping(value = "/savereviews", method = RequestMethod.POST)
 	public String saveReview(@RequestBody String r) {
 		System.out.println("save reviews got called");
