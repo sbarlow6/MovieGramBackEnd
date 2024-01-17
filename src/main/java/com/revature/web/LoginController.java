@@ -20,7 +20,7 @@ import com.revature.model.User;
 import com.revature.service.UserService;
 
 @RestController(value = "loginController")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class LoginController {
 	private static UserService userService;
 	@Autowired
