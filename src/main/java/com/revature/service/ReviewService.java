@@ -35,7 +35,7 @@ public class ReviewService {
 	public List<Review> reviewsByMovieid(String imdbid) {
 		return this.reviewRepository.findReviewByMovieid(imdbid);
 	}
-	public List<Review> reviewsByOne(int revid) {
+	public Review reviewsByOne(int revid) {
 		return this.reviewRepository.findReviewByRevid(revid);
 	}
 
