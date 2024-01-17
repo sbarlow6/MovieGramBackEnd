@@ -65,5 +65,10 @@ public class UserService {
 
         this.userRepository.save(u);
 	}
+
+	public void deleteUser(Integer u) {
+		this.userRepository.deleteByProfileid(u);
+		
+	}
 	
 }
